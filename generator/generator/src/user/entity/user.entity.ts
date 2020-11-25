@@ -4,6 +4,7 @@ import { type } from 'os';
 import { Roles } from './role.entity';
 import { Events } from "../../event/entity/event.entity";
 import { Cases } from 'src/case/entity/case.entity';
+import { Measures } from 'src/measure/entity/measure.entity';
 
 
 
@@ -42,4 +43,7 @@ export class Users{
 
      @OneToMany(type => Cases, x => x.owner)
      assignedCases: Cases[]
+
+     @OneToMany(type => Measures, x => x.owner)
+     assignedMeasures: Measures[]
 }
