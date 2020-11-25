@@ -9,7 +9,10 @@ export class Roles{
      @PrimaryGeneratedColumn()
      id : number;
 
-     @Column()
+     @Column({length: 200})
+     name: string
+
+     @Column({length:500})
      description: string
 
      @OneToMany(type => Users, user => user.role)
