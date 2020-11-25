@@ -1,7 +1,7 @@
 import { IsDate, isDate, IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString, IsUrl } from "class-validator"
 import { type } from 'os';
 
-export class Roles{
+export class RolesDto{
 
      @IsString()
      name: string
