@@ -192,7 +192,14 @@ export class EventService {
             const description = title + 'description';
             const numberOfPeople = this.randomInt(0, 100);
             const user = users[this.randomInt(0, users.length-1)];
-            const eventDate = new Date().toUTCString();
+            const year = this.randomInt(2019, 2020);
+            const month = this.randomInt(0,11);
+            const day = this.randomInt(0,28);
+            const hour = this.randomInt(0,23);
+            const minute = this.randomInt(0,59);
+            var date = new Date(year, month, day, hour, minute);
+            if(date> new Date()){date=new Date()}
+            const eventDate = date.toUTCString();
 
             const newEvent: EventsDto = {title, localization, eventDate, description, numberOfPeople, user, type, criticality}
 
