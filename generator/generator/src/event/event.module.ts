@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Cases } from 'src/case/entity/case.entity';
 import { Measures } from 'src/measure/entity/measure.entity';
+import { Roles } from 'src/user/entity/role.entity';
 import { Users } from 'src/user/entity/user.entity';
 import { UserService } from 'src/user/user.service';
 import { EventCriticalities } from './entity/event.criticality.entity';
@@ -12,7 +13,7 @@ import { EventService } from './event.service';
 
 @Module({
     imports:[
-        TypeOrmModule.forFeature([Users, Cases, Events, Measures, EventCriticalities, EventTypes]),
+        TypeOrmModule.forFeature([Users, Cases, Events, Measures, EventCriticalities, EventTypes, Roles]),
         UserService,
       ],
       providers: [EventService],
