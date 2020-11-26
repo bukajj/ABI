@@ -4,6 +4,7 @@ import { type } from 'os';
 import { Users } from 'src/user/entity/user.entity';
 import { EventTypes } from './event.type.entity';
 import { EventCriticalities } from './event.criticality.entity';
+import { Cases } from 'src/case/entity/case.entity';
 
 @Entity()
 @Unique(['id'])
@@ -34,4 +35,7 @@ export class Events{
 
      @ManyToOne(type => EventCriticalities, criticality => criticality.events, {nullable: false})
      criticality: EventCriticalities
+
+     @OneToMany(type => Cases, x=>x.event)
+     cases: Cases[]
 }

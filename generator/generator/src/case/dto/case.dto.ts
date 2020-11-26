@@ -3,6 +3,7 @@ import { type } from 'os';
 import { Users } from 'src/user/entity/user.entity';
 import { CaseTypes } from '../entity/case.types.entity';
 import { CaseCriticalities } from '../entity/case.criticalities.entity';
+import { Events } from "src/event/entity/event.entity";
 
 export class CasesDto{
 
@@ -40,4 +41,7 @@ export class CasesDto{
 
      @IsOptional()
      owner: Users
+
+     @IsOptional()
+     event: Events
 }

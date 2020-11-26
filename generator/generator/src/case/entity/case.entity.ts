@@ -4,6 +4,8 @@ import { type } from 'os';
 import { Users } from 'src/user/entity/user.entity';
 import { CaseTypes } from './case.types.entity';
 import { CaseCriticalities } from './case.criticalities.entity';
+import { Events } from 'src/event/entity/event.entity';
+import { Measures } from 'src/measure/entity/measure.entity';
 
 
 @Entity()
@@ -44,4 +46,10 @@ export class Cases{
 
      @ManyToOne(type => Users, owner => owner.assignedCases)
      owner: Users
+
+     @ManyToOne(type => Events, x=>x.cases)
+     event: Events
+
+     @OneToMany(type => Measures, x=>x.case)
+     measures: Measures[]
 }

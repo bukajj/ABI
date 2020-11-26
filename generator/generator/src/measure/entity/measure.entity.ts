@@ -2,6 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, Unique, Index, OneToMany , Many
 import { IsDate, isDate, IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString, IsUrl } from "class-validator"
 import { type } from 'os';
 import { Users } from 'src/user/entity/user.entity';
+import { Cases } from 'src/case/entity/case.entity';
 
 
 @Entity()
@@ -27,4 +28,7 @@ export class Measures{
 
      @ManyToOne(type => Users, owner => owner.assignedMeasures)
      owner: Users
+
+     @ManyToOne(type => Cases, x=>x.measures)
+     case: Cases
 }

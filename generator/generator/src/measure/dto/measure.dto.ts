@@ -1,5 +1,6 @@
 import { IsDate, isDate, IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString, IsUrl, Max, Min } from "class-validator"
 import { maxHeaderSize } from "http";
+import { Cases } from "src/case/entity/case.entity";
 import { Users } from 'src/user/entity/user.entity';
 
 export class MeasuresDto{
@@ -21,4 +22,6 @@ export class MeasuresDto{
      user: Users
 
      owner: Users
+
+     case: Cases
 }

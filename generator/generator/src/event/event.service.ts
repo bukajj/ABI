@@ -187,9 +187,9 @@ export class EventService {
         while(i<amount){
             const criticality = criticalities[this.randomInt(0, criticalities.length-1)];
             const type = types[this.randomInt(0, types.length-1)];
-            const title = criticality.color + "Event" + type.name;
+            const title = criticality.color + " Event " + type.name;
             const localization = localizations[this.randomInt(0, localizations.length-1)];
-            const description = title + 'description';
+            const description = title + ' description';
             const numberOfPeople = this.randomInt(0, 100);
             const user = users[this.randomInt(0, users.length-1)];
             const year = this.randomInt(2019, 2020);
