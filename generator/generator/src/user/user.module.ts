@@ -11,7 +11,7 @@ import { Repository } from 'typeorm';
 
 @Module({
      imports:[
-          TypeOrmModule.forFeature([Users, Roles, Cases, Events, Measures])
+          TypeOrmModule.forFeature([Users, Roles])
         ],
         providers: [UserService],
         controllers: [UserController],
