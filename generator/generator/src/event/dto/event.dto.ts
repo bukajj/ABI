@@ -4,7 +4,7 @@ import { Users } from 'src/user/entity/user.entity';
 import { EventTypes } from '../entity/event.type.entity';
 import { EventCriticalities } from '../entity/event.criticality.entity';
 
-export class Events{
+export class EventsDto{
 
      @IsString()
      title: string

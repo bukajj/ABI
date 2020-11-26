@@ -12,7 +12,7 @@ export class UserService {
           @InjectRepository(Users)
           private readonly userRepository: Repository<Users>,
 
-          @InjectRepository(Users)
+          @InjectRepository(Roles)
           private readonly roleRepository: Repository<Roles>,
      ){}
 
@@ -21,7 +21,7 @@ export class UserService {
      }
 
      async createRole(role: RolesDto): Promise<Roles>{
-          const newRole = await this.roleRepository.save({...role});
+          const newRole = await this.roleRepository.save(role);
 
           if(!newRole){
                throw new HttpException('Bad request', HttpStatus.BAD_REQUEST);
@@ -95,8 +95,8 @@ export class UserService {
           return await this.userRepository.find();
      }
 
-     async createUser(user: UsersDto): Promise<Boolean>{
-          const newUser = await this.userRepository.save({...user});
+     async createUser(user: UsersDto): Promise<boolean>{
+          const newUser = await this.userRepository.save(user);
 
           if(!newUser){
                throw new HttpException('Bad request', HttpStatus.BAD_REQUEST);
@@ -105,10 +105,12 @@ export class UserService {
           return true;
      } 
 
-     async createMultipleUsers(amount: number): Promise<Boolean>{
+     async createMultipleUsers(amount: number): Promise<any>{
 
-          var usersAmount = (await this.findAllUsers).length;
-          const roles = await this.findAllRoles;
+          var status=false;
+
+          var usersAmount = (await this.findAllUsers()).length;
+          const roles: Roles[] = await this.roleRepository.find();
           const rolesAmount = roles.length;
           const names = ['Jakub', 'Marek','Kamil','Aldona','Minerwa',
                'Waldemar','Jacek','Placek','Ola','Tomasz','Paula',
@@ -116,30 +118,36 @@ export class UserService {
           const lastnames = ['Nowak', 'Kowalski', 'Kokos', 'Misztal', 'Kura',
                          'Baranowski', 'Palacz', 'Abel', 'Piazza', 'Sarinen'];
 
+          var i: number = 0;
 
-          for(var _i=0; _i < amount; _i++){
+          const a = typeof amount;
+          const b: number = amount;
+
+          while(i<amount){
                const login = 'user' + usersAmount;
                const email = login + '@gmail.com';
                const password = 'secret';
                const firstname = names[this.randomInt(0,names.length-1)];
                const lastname = lastnames[this.randomInt(0,lastnames.length-1)];
-               const role = roles[this.randomInt(0,roles.length-1)];
+               const role: Roles = roles[this.randomInt(0,roles.length-1)];
                var phoneNumber = '';
 
-               for(var _j=0; _j<9; _j++){
+               for(var j=0; j<9; j++){
                     phoneNumber+= this.randomInt(0,9);
                }
 
                const newUser: UsersDto = {login,firstname,lastname,email,password,phoneNumber,role};
 
-               const status = await this.createUser(newUser);
+               status = await this.createUser(newUser);
 
                usersAmount++;
+               
+               i++;
 
-               if(!status){return false;}
+               if(!newUser){return false}
           }
 
-          return true;
+          return status;
      }
 
      randomInt(min, max){
